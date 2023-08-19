@@ -5,6 +5,7 @@ import * as yup from 'yup';
 import theme from '../theme';
 import FormikTextInput from './FormikTextInput';
 import Text from './Text';
+import useSignIn from '../hooks/useSignIn';
 
 // const SignIn = () => {
 //   return <Text>The sign-in view</Text>;
@@ -36,18 +37,43 @@ const SignInForm = ({ onSubmit }) => {
   );
 };
 
+// const SignIn = () => {
+//   // const onSubmit = values => {
+//   //   const username = values.username;
+//   //   const password = values.password;
+
+//   //   if (!isNaN(username) && !isNaN(password)) {
+//   //     SignIn(username, password);
+//   //   }
+//   // };
+
+//   const onSubmit = (values) => {
+//     console.log(values);
+//   };
+
+//   return (
+//     <Formik
+//       initialValues={initialValues}
+//       onSubmit={onSubmit}
+//       validationSchema={validationSchema}
+//     >
+//       {({ handleSubmit }) => <SignInForm onSubmit={handleSubmit} />}
+//     </Formik>
+//   );
+// };
+
 const SignIn = () => {
-  // const onSubmit = values => {
-  //   const username = values.username;
-  //   const password = values.password;
+  const [signIn] = useSignIn();
 
-  //   if (!isNaN(username) && !isNaN(password)) {
-  //     SignIn(username, password);
-  //   }
-  // };
+  const onSubmit = async (values) => {
+    const { username, password } = values;
 
-  const onSubmit = (values) => {
-    console.log(values);
+    try {
+      const { data } = await signIn({ username, password });
+      console.log(data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
