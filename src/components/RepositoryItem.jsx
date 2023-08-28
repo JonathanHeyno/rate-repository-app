@@ -10,7 +10,7 @@ const numberCorrection = (number) => {
 }
 
 const RepositoryItem = ({item}) => (
-    <View style={theme.repositoryItemContainer}>
+    <View testID="repositoryItem" style={theme.repositoryItemContainer}>
       <View style={theme.repositoryItemContent}>
         <Image
             style={theme.repositoryItemPicture}
@@ -20,7 +20,7 @@ const RepositoryItem = ({item}) => (
         />
         <View style={theme.repositoryItemContainer}>
           <Text fontWeight="bold" >{item.fullName}</Text>
-          <Text color='textSecondary'>{item.description}</Text>
+          <Text style={{color: 'textSecondary', marginRight: 45}}>{item.description}</Text>
           <View style={{flexDirection: 'row'}}>
             <View style={theme.language}>
               <Text style={{color: 'white'}}>{item.language}</Text>

@@ -11,10 +11,8 @@ const useSignIn = () => {
     const navigate = useNavigate();
   
     const signIn = async ({ username, password }) => {
-      // call the mutate function here with the right arguments
       const mutationResult = await mutate({variables: {credentials: {username: username, password: password}}});
       await authStorage.setAccessToken(mutationResult.data.authenticate.accessToken);
-      console.log(mutationResult)
       if (mutationResult.data.authenticate.accessToken) {
         navigate("/");
       }
